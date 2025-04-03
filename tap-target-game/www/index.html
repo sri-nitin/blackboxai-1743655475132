@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Target Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .target {
+            transition: transform 0.1s;
+        }
+        .target:active {
+            transform: scale(0.9);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-blue-100 to-purple-100 h-screen overflow-hidden">
+    <!-- Start Screen -->
+    <div id="startScreen" class="flex flex-col items-center justify-center h-full">
+        <h1 class="text-4xl font-bold text-purple-800 mb-8">Tap Target</h1>
+        <div class="bg-purple-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-lg hover:bg-purple-700 transition cursor-pointer" id="startButton">
+            Start Game
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="hidden flex-col h-full">
+        <div class="flex justify-between p-4">
+            <div class="text-2xl font-bold text-purple-800">Score: <span id="score">0</span></div>
+            <div class="text-2xl font-bold text-purple-800">Time: <span id="time">30</span>s</div>
+        </div>
+        <div class="flex-1 flex items-center justify-center">
+            <div id="target" class="target w-24 h-24 bg-red-500 rounded-full flex items-center justify-center shadow-xl cursor-pointer pulse">
+                <i class="fas fa-bullseye text-white text-4xl"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="hidden flex-col items-center justify-center h-full">
+        <h1 class="text-4xl font-bold text-purple-800 mb-4">Game Over!</h1>
+        <div class="text-2xl mb-8">Your score: <span id="finalScore">0</span></div>
+        <div class="bg-purple-600 text-white px-8 py-4 rounded-full text-xl font-semibold shadow-lg hover:bg-purple-700 transition cursor-pointer" id="restartButton">
+            Play Again
+        </div>
+    </div>
+
+    <audio id="tapSound" src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-game-jump-coin-216.mp3"></audio>
+    <audio id="gameOverSound" src="https://assets.mixkit.co/sfx/preview/mixkit-game-over-arcade-notification-267.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
